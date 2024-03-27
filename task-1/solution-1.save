@@ -1,0 +1,58 @@
+Respective results/outputs and script analysis:
+
+
+1. Only 98.126.83.64 IP has issues more than one request per the access log data. The command used:
+
+
+echo -e "\n============= TOP REQUESTS BY IP =============\n"
+
+cut -d " " -f 3 | sort | uniq -c | sort -nr | head -5
+
+============= TOP REQUESTS BY IP =============
+
+   1184 98.126.83.64
+      1 99.9.195.153
+      1 99.90.171.165
+      1 99.81.223.86
+      1 99.4.242.220
+
+2. There are no requests that result in "500" status code. The command used:
+
+echo -e "\n========= Number of requests with '500' status code ========= \n"
+
+
+cat access.log | cut -d " " -f "4" | grep -c 500
+
+0
+========= Number of requests with '500' status code =========
+
+0
+
+========= Number of requests with '200' status code =========
+
+1849
+
+========= Number of requests with '500' status code =========
+
+0
+
+========= Number of request per minute =========
+
+    802 15:00
+    801 15:01
+    778 15:02
+    800 15:03
+    808 15:04
+     11 15:05
+
+========= Top requests per domain name =========
+
+   2009 example2.com
+   1184 example3.com
+    428 example1.com
+    379 example4.com
+
+========= Status codes returned for request directed to /page.php =========
+
+
+    379 499

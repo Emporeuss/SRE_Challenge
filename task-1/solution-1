@@ -1,0 +1,49 @@
+The commands for parsing the domlogs are themselves in the "domlogs.sh" file. Here is the raw output of the script itself:
+
+============= TOP REQUESTS BY IP =============
+
+   1184 98.126.83.64
+      1 99.9.195.153
+      1 99.90.171.165
+      1 99.81.223.86
+      1 99.4.242.220
+
+========= Number of requests with '500' status code =========
+
+0
+
+========= Number of requests with '200' status code =========
+
+1849
+
+========= Number of requests with '500' status code =========
+
+0
+
+========= Number of request per minute =========
+
+    802 15:00
+    801 15:01
+    778 15:02
+    800 15:03
+    808 15:04
+     11 15:05
+
+========= Top requests per domain name =========
+
+   2009 example2.com
+   1184 example3.com
+    428 example1.com
+    379 example4.com
+
+========= Status codes returned for request directed to /page.php =========
+
+    379 499
+
+
+Baseed on the provided information, we can conclude the following:
+1. The only IP that had more than one request is 98.126.83.64
+2. There were 0 requests with 500 status code, 1849 with "200" one.
+3. The number of requests per minute was almost the same for the duration of 15:00-15:04 - 797 requests per minute on average. It has drastically decreased to measly 11 requests on the last minute.
+4. Per the given data, example2.com is the most requested domain.
+5. Yes, there are only 499 status codes returned for requests directed to page.php 
