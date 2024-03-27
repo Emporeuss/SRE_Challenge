@@ -47,3 +47,6 @@ Baseed on the provided information, we can conclude the following:
 3. The number of requests per minute was almost the same for the duration of 15:00-15:04 - 797 requests per minute on average. It has drastically decreased to measly 11 requests on the last minute.
 4. Per the given data, example2.com is the most requested domain.
 5. Yes, there are only 499 status codes returned for requests directed to page.php 
+
+
+To sum it up - there were a lot of requests from 98.126.83.64 IP address to example3.com domain to page.html, which seems abnormal compate to the rest of the incoming traffic, so it might be worth looking into it to determine whether traffic is valid/expected and apply repsective traffic mitigation measures if not.
