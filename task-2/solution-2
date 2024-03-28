@@ -1,0 +1,28 @@
+- The fundamental issue is that the label name in "Service" section the "Selector" field has different label name as compared to one in the "Deployment" section. Hence, it was required to correct it to "sretest".
+- nodeAffinity value required for the label with the specified name to exist on the node, so the easiest solution is to change the requiredDuringSchedulingIgnoredDuringExecution to preferredDuringSchedulingIgnoredDuringExecution
+
+
+Commands: ran this to create a deployment
+
+kubectl create -f nginx.yaml
+
+Checked information about services:
+
+kubectl get svc
+NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+kubernetes        ClusterIP   10.96.0.1       <none>        443/TCP        19m
+sretest-service   NodePort    10.102.87.240   <none>        80:31028/TCP   14s
+
+Nginx was not working in via port 31208 in the web-browser. As the deployment is run via hypervisor, it makes sense that I cannot access it via port directly. Used port forwarding to forward local port to port 80
+
+
+Checked the pod name:
+kubectl get pod
+NAME                       READY   STATUS    RESTARTS   AGE
+sretest-6c9d67b54d-gqrrl   1/1     Running   0          51s
+ kubectl port-forward sretest-6c9d67b54d-gqrrl 8080:80
+Forwarding from 127.0.0.1:8080 -> 80
+Forwarding from [::1]:8080 -> 80
+Handling connection for 8080
+
+localhost:8080 was accessible after that and resolved to default nginx page.

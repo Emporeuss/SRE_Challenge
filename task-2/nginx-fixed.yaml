@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sretest
+  labels:
+    app: sretest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sretest
+  template:
+    metadata:
+      labels:
+        app: sretest
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: another-node-label-key
+                operator: In
+                values:
+                - another-node-label-value
+      containers:
+      - name: sretest
+        image: nginx
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sretest-service
+spec:
+  selector:
+    app: sretest
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
